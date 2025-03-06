@@ -1,3 +1,4 @@
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_demo/api/auth_service.dart';
 import 'package:firebase_demo/api/firebase_messaging_service.dart';
 import 'package:firebase_demo/api/sign_in.dart';
@@ -44,7 +45,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => SignIn()));
                 },
-                child: Text("Logout"))
+                child: Text("Logout")),
+            SizedBox(
+              height: 30,
+            ),
           ],
         ),
       ),

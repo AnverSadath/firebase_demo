@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_demo/api/firebase_api.dart';
 import 'package:firebase_demo/api/firebase_messaging_service.dart';
 import 'package:firebase_demo/api/sign_up.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
@@ -9,6 +11,16 @@ void main() async {
   await Firebase.initializeApp();
   await FirebaseApi().initNotofication();
   FirebaseMessagingService().init(); // Initialize messaging service
+
+  FlutterError.onError = (errorDetails) {
+    FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+  };
+
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack);
+    return true;
+  };
+
   runApp(const MyApp());
 }
 
