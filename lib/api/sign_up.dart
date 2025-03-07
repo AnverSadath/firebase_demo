@@ -65,7 +65,7 @@ class _SignUpState extends State<SignUp> {
                     },
                     child: Text("Sign in"))
               ],
-            )
+            ),
           ],
         ),
       ),
